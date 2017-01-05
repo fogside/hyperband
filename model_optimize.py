@@ -1,18 +1,17 @@
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import f1_score
 
 
 class ModelOptimize:
-    def __init__(self, skmodel, params_opt_dic, X, y, val_metrics=f1_score, val_size=0.3):
+    def __init__(self, skmodel, params_opt_dic, X, y, val_metrics, val_size=0.3):
         """
         :param skmodel: sklearn model to evaluate
         :param params_opt_dic: dictionary with parameters to optimize and ranges
         :param X: Data
         :param y: Target
         :param val_size: part of data for validation
-        :param val_metrics: validation metric
+        :param val_metrics: validation metric. An object from sklearn.metrics
 
         """
         X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=val_size)

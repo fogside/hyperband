@@ -10,7 +10,7 @@ from keras.layers import Dropout
 from keras.layers import Dense
 
 
-# Function to create model, required for KerasClassifier
+# Function to create model, required for KerasRegressor
 def create_model(dens1=1400, dens2=300, dropout=0.2):
     model = Sequential()
     model.add(Dense(input_dim=N, output_dim=N))
@@ -34,6 +34,6 @@ X = scaler.fit_transform(data.ix[:, :-1])
 y = data.ix[:, -1]
 skmodel = KerasRegressor(build_fn=create_model, verbose=2)
 
-params_opt_dic = {'dens1': [1923], 'dens2': [549], 'dropout': [0, 0.5]}
+params_opt_dic = {'dens1': [1000, 2000], 'dens2': [500, 1000]}
 
 best_params = run_hyperband(skmodel, params_opt_dic, X, y, val_metrics=r2_score)
